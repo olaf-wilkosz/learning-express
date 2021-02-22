@@ -28,7 +28,7 @@ app.get('/info', (req, res) => {
   res.show('info.html');
 });
 
-app.get('/history', (req, res) => {
+app.get('/history', (req, res, next) => {
   res.show('history.html');
 });
 
