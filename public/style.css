@@ -2,3 +2,12 @@ h1 {
   font-weight: lighter;
   font-style: italic;
 }
+
+.dark {
+  background-color: #333333;
+  color: #ffffff;
+}
+  
+.dark a:visited {
+  color: #ffa801;
+}
