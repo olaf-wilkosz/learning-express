@@ -5,7 +5,7 @@
 {{#if isError}}
 <p class="isError">You can't leave fields empty!</p>
 {{/if}}
-<form action="/contact/send-message" method="POST">
+<form action="/contact/send-message" method="POST" enctype="multipart/form-data">
   <label>
     Your name: <input type="text" name="author">
   </label>

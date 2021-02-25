@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const hbs = require('express-handlebars');
+const fileUpload = require('express-fileupload');
 
 const app = express();
 
@@ -12,6 +13,8 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(express.urlencoded({ extended: false }));
 // app.use(express.json());
+
+app.use(fileUpload({ createParentPath: true }));
 
 app.get('/', (req, res) => {
   res.render('index');
@@ -27,10 +30,11 @@ app.get('/contact', (req, res) => {
 
 app.post('/contact/send-message', (req, res) => {
 
-  const { author, sender, title, image, message } = req.body;
-  
+  const { author, sender, title, message } = req.body;
+  const { image } = req.files;
+
   if (author && sender && title && image && message) {
-    res.render('contact', { isSent: true, filename: image });
+    res.render('contact', { isSent: true, filename: req.files.image.name });
   }
   else {
     res.render('contact', { isError: true });
@@ -42,7 +46,7 @@ app.get('/info', (req, res) => {
   res.render('info');
 });
 
-app.get('/history', (req, res, next) => {
+app.get('/history', (req, res) => {
   res.render('history');
 });
 
