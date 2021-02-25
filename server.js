@@ -33,7 +33,7 @@ app.post('/contact/send-message', (req, res) => {
   const { author, sender, title, message } = req.body;
   const { image } = req.files;
 
-  if (author && sender && title && image && message) {
+  if (author && sender && title && message && (req.files.image.mimetype === 'image/png' || 'image/jpg' || 'image/jpeg' || 'image/gif') ) {
     res.render('contact', { isSent: true, filename: req.files.image.name });
   }
   else {
