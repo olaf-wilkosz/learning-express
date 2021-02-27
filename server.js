@@ -31,10 +31,14 @@ app.get('/contact', (req, res) => {
 app.post('/contact/send-message', (req, res) => {
 
   const { author, sender, title, message } = req.body;
-  const { image } = req.files;
+  let image = req.files.image;
 
-  if (author && sender && title && image && message && (req.files.image.mimetype === 'image/png' || 'image/jpg' || 'image/jpeg' || 'image/gif')) {
-    res.render('contact', { isSent: true, filename: req.files.image.name });
+  image.mv('./public/' + image.name);
+  uploadPath = __dirname + '/public/' + image.name;
+  console.log('uploadPath:', uploadPath);
+
+  if (author && sender && title && image && message && (image.mimetype === 'image/png' || 'image/jpg' || 'image/jpeg' || 'image/gif')) {
+    res.render('contact', { isSent: true, filename: image.name, imageSource: uploadPath });
   }
   else {
     res.render('contact', { isError: true });
