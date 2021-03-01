@@ -101,7 +101,8 @@ button {
 }
 
 .isSent img {
-  padding: 0.9rem 0.8rem;
+  padding: 1rem 0.5rem 0;
+  max-width: 14rem;
 }
 
 @-webkit-keyframes fadeIn {
