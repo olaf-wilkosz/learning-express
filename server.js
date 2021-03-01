@@ -33,13 +33,11 @@ app.post('/contact/send-message', (req, res) => {
   const { author, sender, title, message } = req.body;
   let image = req.files.image;
 
-  image.mv('./public/' + image.name);
-  // uploadPath = __dirname + '/public/' + image.name;
-  uploadPath = path.join(__dirname + '/public/' + image.name);
-  console.log('uploadPath:', uploadPath);
+  let uploadedImage = 'image.jpg';
+  image.mv('./public/' + uploadedImage);
 
   if (author && sender && title && image && message && (image.mimetype === 'image/png' || 'image/jpg' || 'image/jpeg' || 'image/gif')) {
-    res.render('contact', { isSent: true, filename: image.name, imageSource: uploadPath });
+    res.render('contact', { isSent: true, filename: image.name });
   }
   else {
     res.render('contact', { isError: true });
