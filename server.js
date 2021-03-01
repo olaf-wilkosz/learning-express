@@ -34,7 +34,8 @@ app.post('/contact/send-message', (req, res) => {
   let image = req.files.image;
 
   image.mv('./public/' + image.name);
-  uploadPath = __dirname + '/public/' + image.name;
+  // uploadPath = __dirname + '/public/' + image.name;
+  uploadPath = path.join(__dirname + '/public/' + image.name);
   console.log('uploadPath:', uploadPath);
 
   if (author && sender && title && image && message && (image.mimetype === 'image/png' || 'image/jpg' || 'image/jpeg' || 'image/gif')) {
